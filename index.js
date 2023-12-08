@@ -87,6 +87,7 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+//Calculate total number of months
 let totalMonths = finances.length;
 let totalEarnings = 0;
 
@@ -94,19 +95,12 @@ let totalEarnings = 0;
 let totalChange = 0;
 let averageChange = 0;
 
+let greatestIncrease = 0;
+let greatestIncreaseMonth = "";
+let greatestDecrease = 0;
+let greatestDecreaseMonth = "";
 
 
-for (let i=1; i<finances.length; i++) {
-  totalChange += finances[i][1] - finances[i-1][1];
-}
-
-console.log(totalChange);
-averageChange = (totalChange / (totalMonths-1)).toFixed(2);
-console.log(averageChange);
-
-
-
-/*
 //this calculates the total earnings for the entire period.
 for (let i=0; i<finances.length; i++) {
   totalEarnings += finances[i][1];
@@ -114,6 +108,27 @@ for (let i=0; i<finances.length; i++) {
 }
 
 
+//Calculate average change
+for (let i=1; i<finances.length; i++) {
+  totalChange += finances[i][1] - finances[i-1][1];
+}
+
+//Calculate greteast increase in Profit/Losses
+for (let i=1; i<finances.length; i++) {
+
+  let monthlyChange = finances[i][1] - finances[i-1][1];
+  
+  if (monthlyChange > greatestIncrease) {
+    greatestIncrease = monthlyChange;
+    greatestIncreaseMonth = finances[i][0];
+
+  } else if (monthlyChange < greatestDecrease) {
+    greatestDecrease = monthlyChange;
+    greatestDecreaseMonth = finances[i][0];
+
+  }
+}
+averageChange = (totalChange / (totalMonths-1)).toFixed(2);
 
 
 
@@ -122,7 +137,9 @@ console.log(
   "Financial Analysis\n-------------------------" + 
   "\nTotal Months: " + totalMonths +
   "\nTotal: " + "$" + totalEarnings +
+  "\nAverage Change: " + averageChange +
+  "\nGreatest Increase in Profits/Losses: " + greatestIncreaseMonth + " ($" + greatestIncrease + ")" +
+  "\nGreatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " ($" + greatestDecrease + ")" +
   ""
   );
 
-*/
