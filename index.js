@@ -108,13 +108,9 @@ for (let i=0; i<finances.length; i++) {
 }
 
 
-//Calculate average change
+//Calculate average change and greteast increase in Profit/Losses
 for (let i=1; i<finances.length; i++) {
   totalChange += finances[i][1] - finances[i-1][1];
-}
-
-//Calculate greteast increase in Profit/Losses
-for (let i=1; i<finances.length; i++) {
 
   let monthlyChange = finances[i][1] - finances[i-1][1];
   
@@ -125,21 +121,22 @@ for (let i=1; i<finances.length; i++) {
   } else if (monthlyChange < greatestDecrease) {
     greatestDecrease = monthlyChange;
     greatestDecreaseMonth = finances[i][0];
-
+    
   }
 }
-averageChange = (totalChange / (totalMonths-1)).toFixed(2);
 
+//Rounds the average change calculation
+averageChange = (totalChange / (totalMonths-1)).toFixed(2);
 
 
 //This is used to log all information to the console as a last results.
 console.log(
-  "Financial Analysis\n-------------------------" + 
+  "Financial Analysis" +
+  "\n-------------------------" + 
   "\nTotal Months: " + totalMonths +
   "\nTotal: " + "$" + totalEarnings +
   "\nAverage Change: " + averageChange +
   "\nGreatest Increase in Profits/Losses: " + greatestIncreaseMonth + " ($" + greatestIncrease + ")" +
-  "\nGreatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " ($" + greatestDecrease + ")" +
-  ""
+  "\nGreatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " ($" + greatestDecrease + ")"
   );
 
