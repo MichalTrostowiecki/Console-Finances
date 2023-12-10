@@ -110,8 +110,8 @@ for (let i=0; i<finances.length; i++) {
 
 //Calculate average change and greteast increase in Profit/Losses
 for (let i=1; i<finances.length; i++) {
-  totalChange += finances[i][1] - finances[i-1][1];
 
+  totalChange += finances[i][1] - finances[i-1][1];
   let monthlyChange = finances[i][1] - finances[i-1][1];
   
   if (monthlyChange > greatestIncrease) {
@@ -121,7 +121,7 @@ for (let i=1; i<finances.length; i++) {
   } else if (monthlyChange < greatestDecrease) {
     greatestDecrease = monthlyChange;
     greatestDecreaseMonth = finances[i][0];
-    
+
   }
 }
 
